@@ -1,0 +1,89 @@
+import java.util.*;
+
+public class Code15 {
+
+	static int [] a;
+	static int n;
+	static int [] LMa;
+	static int A;
+	static int [] len;
+	static int [] start;
+	static int [] end;
+
+	public static void main(String[] args) {
+		Scanner kb=new Scanner(System.in);
+		n=kb.nextInt();
+		a=new int[n];
+
+		for (int i=0;i<n;i++)
+			a[i]=kb.nextInt();
+
+		FindLM();
+		Len();
+		int Max=max();
+
+		for(int i=start[Max]; i<=end[Max];i++)
+			System.out.print(a[i]+" ");
+
+	}
+
+	static void FindLM() {
+		A=0;
+		LMa=new int [n];
+		for (int i=0;i<n;i++) {
+			if (i==0) {
+				if (a[i]<a[i+1]) {
+					LMa[A]=i;
+					A++;
+				}
+			}
+			else if (i==n-1) {
+				if (a[n-1]<a[n-2])
+					LMa[A]=i;
+
+			}
+			else {
+				if (a[i]<a[i-1] && a[i]<a[i+1]) {
+					LMa[A]=i;
+					A++;
+				}
+			}
+		}
+	}
+	static void Len() {
+		len=new int[A];
+		start=new int [A];
+		end = new int[A];
+		
+		for (int i=0;i<A;i++) {
+			for (int j=0;j<n-LMa[i]-1;j++) {
+				if( a[LMa[i]+j] < a[LMa[i]+j+1] && LMa[i]!=n) 
+					len[i]++;
+				else {
+					end[i]=LMa[i]+j;
+					break;
+				}
+			}
+			for (int j=0;j<LMa[i];j++) {
+				if ( a[LMa[i]-j]<a[LMa[i]-j-1] )
+					len[i]++;
+				else {
+					start[i]=LMa[i]-j;
+					break;
+				}
+			}
+		}
+	}
+	static int max() {
+		int Max=len[0];
+		int maxx=0;
+		for (int i=0;i<A;i++) {
+			if(len[i]>Max) {
+				Max=len[i];
+				maxx=i;
+				}
+		}
+		return maxx;
+	}
+	
+}

@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class Code11 {
+	public static void main(String[] args) {
+		Scanner kb=new Scanner(System.in);
+		int p=kb.nextInt();
+		int q=kb.nextInt();
+
+		int [][] data_pq=new int [p][q];
+
+		for(int i=0;i<p;i++) {
+			for(int j=0;j<q;j++)
+				data_pq[i][j]=kb.nextInt();
+		}
+		
+		q=kb.nextInt();
+		int r=kb.nextInt();
+
+		int [][] data_qr=new int[q][r];
+
+		for(int i=0;i<q;i++) {
+			for(int j=0;j<r;j++)
+				data_qr[i][j]=kb.nextInt();
+		}
+		
+		kb.close();
+
+		int [][] data_pr=new int[p][r];
+		for (int i=0;i<p;i++) {
+			for(int k=0;k<r;k++) {
+				int tmp=0;
+				for (int j=0;j<q;j++) {
+					tmp+=data_pq[i][j]*data_qr[j][k];
+					data_pr[i][k]=tmp;
+				}
+			System.out.print(data_pr[i][k]+" ");	
+				
+			}
+			System.out.println();
+		}
+
+
+
+
+	}
+}

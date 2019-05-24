@@ -1,0 +1,5 @@
+public class Polynomial {
+	public char name; //다항식의 이름
+	public int nTerms; //항의 개수
+	public Term[] terms; //항들을 저장
+}

@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class Code14 {
+	
+	static int [] countU;
+	static int [] countD;
+	static int [] data;
+	static int n;
+
+	public static void main(String[] args) {
+		Scanner kb=new Scanner(System.in);
+		
+		n=kb.nextInt();
+		data=new int[n];
+		for (int i=0;i<n;i++)
+			data[i]=kb.nextInt();
+		
+		int max=FindSort(data);
+		
+		System.out.println(max+1);
+
+	}
+	static int FindSort(int [] data) {
+		int max1=Up(data);
+		int max2=Down(data);
+		
+		if (max1>max2)
+			return max1;
+		else
+			return max2;
+		
+	}
+	static int Up(int [] data) {
+		countU=new int[n];
+		int u=0;
+		for (int i=0; i<n-1;i++) {
+			if (data[i]<=data[i+1]) 
+				countU[u]++;
+			else if (countU[u]!=0 && data[i]>data[i+1])
+				u++;
+		}
+		int max=countU[0];
+		for (int i=0; i<u;i++){
+			if (max<countU[i])
+				max=countU[i];
+		}
+		return max;
+	}
+	static int Down(int [] data) {
+		countD=new int[n];
+		int d=0;
+		for (int i=0; i<n-1;i++) {
+			if (data[i]>=data[i+1]) 
+				countD[d]++;
+			else if (countD[d]!=0 && data[i]<data[i+1])
+				d++;
+		}
+		int max=countD[0];
+		for (int i=0; i<d;i++){
+			if (max<countD[i])
+				max=countD[i];
+		}
+		return max;
+	}
+}

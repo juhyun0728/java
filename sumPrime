@@ -1,0 +1,29 @@
+
+public class Code2 {
+
+	public static void main(String[] args) {
+		int sum=0;
+		int count=0;
+
+		for(int n=1;n<=100000;n++) {
+			boolean IsPrime=true;
+
+			for(int i=2;i*i<n;i++) {
+				if(n%i==0) {
+					IsPrime=false;
+					break;
+				}
+			}
+			if(n>1 && IsPrime) {
+				count++;
+				sum+=n;
+				if(count==50)
+					break;
+			}
+		}
+
+		System.out.print(sum);
+
+	}
+
+}

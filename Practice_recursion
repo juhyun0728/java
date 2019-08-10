@@ -1,0 +1,62 @@
+import java.util.*;
+
+public class PrintString {
+	
+	public static void PrintStr(String s) {
+		if (s.length()==0)
+			return;
+		else {
+			System.out.print(s.charAt(0));
+			PrintStr(s.substring(1));
+		}
+	}
+
+	public static void PrintReverse(String s) {
+		if (s.length()==0) return ;
+		else {
+			PrintReverse(s.substring(1));
+			System.out.print(s.charAt(0));
+		}
+	}
+	public static int CountStr(String s) {
+		if (s.length()==0) return 0;
+		else {
+			return CountStr(s.substring(1))+1;
+		}
+	}
+	public static void ToBinary(int c) {
+		if (c<2) System.out.print(c);
+		else {
+			ToBinary(c/2);
+			System.out.print(c%2);
+		}
+	}
+	
+	public static int Sum(int n, int[] arr) {
+		if (n<=0) return 0;
+		else {
+			return Sum(n-1, arr) + arr[n-1];
+		}
+	}
+	public static void main(String[] args) {
+		Scanner input = new Scanner (System.in);
+		String str = input.nextLine();
+		PrintReverse(str);
+		int c = CountStr(str);
+		System.out.println("\n"+c);
+		PrintStr(str);
+		System.out.println();
+		ToBinary(c);
+		
+		int n;
+		System.out.print("\nn : ");
+		n = input.nextInt();
+		int [] arr = new int[n];
+		System.out.println("data : ");
+		for (int i=0; i<n; i++)
+			arr[i]=input.nextInt();
+		
+		System.out.println("Sum : "+Sum(n,arr));
+	}
+
+}
